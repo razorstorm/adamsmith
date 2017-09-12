@@ -47,22 +47,28 @@ d3.tsv("../output/out_normalized.tsv", type, function(error, data) {
       .style("fill", function(d) { return z(d.key); })
       .attr("d", area);
 
-  layer.filter(function(d) { return d[d.length - 1][1] - d[d.length - 1][0] > 0.01; })
-    .append("text")
-      .attr("x", width - 6)
-      .attr("y", function(d) { return y((d[d.length - 1][0] + d[d.length - 1][1]) / 2); })
-      .attr("dy", ".35em")
-      .style("font", "10px sans-serif")
-      .style("text-anchor", "end")
-      .text(function(d) { return d.key; });
+//  layer.filter(function(d) { return d[d.length - 1][1] - d[d.length - 1][0] > 0.01; })
+//    .append("text")
+//      .attr("x", width + 6)
+//      .attr("y", function(d) { return y((d[d.length - 1][0] + d[d.length - 1][1]) / 2); })
+//      .attr("dy", ".35em")
+//      .style("font", "10px sans-serif")
+//      .style("text-anchor", "end")
+//      .text(function(d) { return d.key; });
 
-  layer.on('mouseover', function(d, i) {
+  layer.on('mousemove', function(d, i) {
+    d3.select(this).style("fill", "red");
+    console.log(i);
+    console.log(d);
     var thisName = d3.select(this).datum().key;
-    tooltip.html("Name: " + thisName);
+    tooltip.html(thisName + " " + d.x);
     tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");
   });
 
-  var xAxis = d3.axisBottom(x).ticks(15, "%Y-%m-%d");
+  console.log(d3.timeDay);
+
+  var xAxis = d3.axisBottom(x).ticks(d3.timeDay, "%Y-%m-%d");
+//  var xAxis = d3.axisBottom(x);
 
   g.append("g")
       .attr("class", "axis axis--x")
