@@ -45,7 +45,7 @@ def convert_data():
 
     pd.options.display.float_format = '{:,.0f}'.format
     try:
-        converted_output = df.resample('1M').sum().fillna(0)
+        converted_output = df.resample('1D').sum().fillna(0)
         if WRITE_TO_DISK:
             converted_output.to_csv('output/out.tsv', encoding='utf-8', sep='\t')
         # data_to_graph(converted_data)
