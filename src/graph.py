@@ -14,7 +14,7 @@ print(normalized)
 
 df = df.divide(normalized, axis=0).fillna(0)
 
-df.to_csv('output/out_normalized.tsv', encoding='utf-8', sep='\t')
+df.to_csv('data/out_normalized.tsv', encoding='utf-8', sep='\t')
 
 print(df)
 # ax = df.plot(kind='area', stacked=True, title='100 % stacked area chart')
