@@ -4,6 +4,9 @@ import pandas as pd
 df = pd.read_csv('output/out.tsv', sep='\t', header=0, index_col=0)
 
 print(df)
+df.index = pd.to_datetime(df.index)
+
+# df = df.resample('D').mean()
 
 normalized = df.sum(axis=1)
 
