@@ -9,8 +9,7 @@ df.index = pd.to_datetime(df.index)
 # df = df.resample('D').mean()
 
 normalized = df.sum(axis=1)
-
-print(normalized)
+print(df.index.tolist())
 
 df = df.divide(normalized, axis=0).fillna(0)
 
